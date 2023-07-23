@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Partner Notes</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="logo_content_description">Logo Partner Notes App</string>
+</resources>
