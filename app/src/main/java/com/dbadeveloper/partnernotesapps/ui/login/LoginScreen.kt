@@ -1,5 +1,6 @@
 package com.dbadeveloper.partnernotesapps.ui.login
 
+import android.content.res.Configuration
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -23,6 +24,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Shapes
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -48,6 +50,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.dbadeveloper.partnernotesapps.R
+import com.dbadeveloper.partnernotesapps.ui.splashscreen.Splash
 import com.dbadeveloper.partnernotesapps.ui.theme.PartnerNotesAppsTheme
 import com.dbadeveloper.partnernotesapps.ui.theme.md_theme_dark_background
 import com.dbadeveloper.partnernotesapps.ui.theme.md_theme_light_background
@@ -94,7 +97,7 @@ fun Login(alpha: Float) {
                 modifier = Modifier.padding(8.dp))
         }
         Divider(
-            color = Color.White.copy(alpha = 0.3f),
+            color = MaterialTheme.colorScheme.primary,
             thickness = 1.dp,
             modifier = Modifier.padding(
                 top = 18.dp,)
@@ -103,7 +106,7 @@ fun Login(alpha: Float) {
             Text(
                 text = "Don't have an account?",
                 modifier = Modifier.padding(end = 8.dp),
-                color = Color.White.copy(alpha = 0.6f),
+                color = MaterialTheme.colorScheme.primary,
             )
             TextButton(onClick = { /*TODO*/ }) {
                 Text(
@@ -130,7 +133,9 @@ sealed class InputType (
     object Password: InputType(
         label = "Password",
         icon = Icons.Default.Lock,
-        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done, keyboardType = KeyboardType.Password),
+        keyboardOptions = KeyboardOptions(
+            imeAction = ImeAction.Done,
+            keyboardType = KeyboardType.Password),
         visualTransformation = PasswordVisualTransformation()
     )
 }
@@ -144,9 +149,13 @@ fun TextInput(inputType: InputType) {
         onValueChange = { value = it},
         modifier = Modifier
             .fillMaxWidth(),
-    leadingIcon = {Icon(imageVector = inputType.icon, contentDescription = inputType.label)},
-    label = {Text(text = inputType.label)},
-    colors = TextFieldDefaults.textFieldColors(
+        leadingIcon = {
+            Icon(imageVector = inputType.icon,
+                contentDescription = inputType.label
+            )},
+        label = {
+            Text(text = inputType.label)},
+        colors = TextFieldDefaults.textFieldColors(
         focusedIndicatorColor = Color.Transparent,
         unfocusedIndicatorColor = Color.Transparent,
     ),
@@ -154,11 +163,14 @@ fun TextInput(inputType: InputType) {
     )
 }
 
-@Preview
+@Preview(name = "Light", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun LoginScreenPreview() {
     PartnerNotesAppsTheme() {
-        Login(alpha = 1f)
+        Surface() {
+            Login(alpha = 1f)
+        }
     }
 }
 
