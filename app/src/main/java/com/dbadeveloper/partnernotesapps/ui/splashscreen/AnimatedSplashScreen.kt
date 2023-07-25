@@ -49,7 +49,11 @@ fun AnimatedSplashScreen(navHostController: NavHostController){
     LaunchedEffect(key1 = true ){
         startAnimation = true
         delay(3000)
-        navHostController.navigate(Screen.Login.route)
+        navHostController.navigate(Screen.Login.route){
+            popUpTo(Screen.Splash.route){
+                inclusive = true
+            }
+        }
     }
 
     Splash(alpha = alphaAnimation.value)
@@ -60,7 +64,7 @@ fun Splash(alpha: Float){
     Column {
         Box(
             modifier = Modifier
-                .background(if (isSystemInDarkTheme()) md_theme_light_onSurface else md_theme_light_surfaceVariant)
+                .background(MaterialTheme.colorScheme.background)
                 .fillMaxSize(),
             contentAlignment = Alignment.Center
         ){
@@ -75,12 +79,12 @@ fun Splash(alpha: Float){
                         .alpha(alpha = alpha),
                     painter = painterResource(id = R.drawable.logo),
                     contentDescription = stringResource(id = R.string.logo_content_description),
-                    tint = md_theme_light_primary,
+                    tint = MaterialTheme.colorScheme.primary,
                 )
 
                 Text(
                     text = stringResource(R.string.app_name),
-                    color = md_theme_light_primary,
+                    color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier
                         .padding(8.dp)
                         .alpha(alpha = alpha),
