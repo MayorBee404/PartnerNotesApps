@@ -3,10 +3,7 @@ package com.dbadeveloper.partnernotesapps.ui.login
 import android.content.res.Configuration
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,16 +11,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Shapes
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -39,24 +31,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.dbadeveloper.partnernotesapps.R
-import com.dbadeveloper.partnernotesapps.navigation.Screen
-import com.dbadeveloper.partnernotesapps.ui.splashscreen.Splash
+import com.dbadeveloper.partnernotesapps.ui.component.InputType
 import com.dbadeveloper.partnernotesapps.ui.theme.PartnerNotesAppsTheme
-import com.dbadeveloper.partnernotesapps.ui.theme.md_theme_dark_background
-import com.dbadeveloper.partnernotesapps.ui.theme.md_theme_light_background
-import com.dbadeveloper.partnernotesapps.ui.theme.md_theme_light_primary
 import kotlinx.coroutines.delay
 
 @Composable
@@ -82,8 +64,8 @@ fun Login(alpha: Float) {
         modifier = Modifier
             .padding(24.dp)
             .fillMaxSize(),
-    verticalArrangement = Arrangement.spacedBy(16.dp, alignment =  Alignment.Bottom),
-    horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(16.dp, alignment =  Alignment.Bottom),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Icon(
             modifier = Modifier
@@ -101,9 +83,11 @@ fun Login(alpha: Float) {
             modifier = Modifier
                 .fillMaxWidth()
                 .alpha(alpha = alpha),
+
         ) {
             Text(
                 text = "SIGN IN",
+                style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.padding(8.dp))
         }
         Divider(
@@ -123,33 +107,12 @@ fun Login(alpha: Float) {
             TextButton(onClick = { /*TODO*/ }) {
                 Text(
                     text = "SIGN UP",
+                    style = MaterialTheme.typography.titleMedium
                 )
                 
             }
         }
     }
-}
-
-sealed class InputType (
-    val label: String,
-    val icon: ImageVector,
-    val keyboardOptions: KeyboardOptions,
-    val visualTransformation: VisualTransformation
-){
-    object Email: InputType(
-        label = "Email / Username",
-        icon = Icons.Default.Person,
-        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
-        visualTransformation = VisualTransformation.None)
-
-    object Password: InputType(
-        label = "Password",
-        icon = Icons.Default.Lock,
-        keyboardOptions = KeyboardOptions(
-            imeAction = ImeAction.Done,
-            keyboardType = KeyboardType.Password),
-        visualTransformation = PasswordVisualTransformation()
-    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -180,8 +143,8 @@ fun TextInput(inputType: InputType, alpha: Float) {
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun LoginScreenPreview() {
-    PartnerNotesAppsTheme() {
-        Surface() {
+    PartnerNotesAppsTheme {
+        Surface{
             Login(alpha = 1f)
         }
     }

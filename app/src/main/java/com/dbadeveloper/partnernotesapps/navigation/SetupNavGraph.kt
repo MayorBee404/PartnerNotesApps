@@ -1,18 +1,11 @@
 package com.dbadeveloper.partnernotesapps.navigation
 
-import android.content.res.Configuration
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.dbadeveloper.partnernotesapps.ui.login.LoginScreen
-import com.dbadeveloper.partnernotesapps.ui.splashscreen.AnimatedSplashScreen
-import com.dbadeveloper.partnernotesapps.ui.splashscreen.Splash
-import com.dbadeveloper.partnernotesapps.ui.theme.PartnerNotesAppsTheme
+import com.dbadeveloper.partnernotesapps.ui.splash.AnimatedSplashScreen
 
 @Composable
 fun SetupNavGraph(navHostController: NavHostController) {

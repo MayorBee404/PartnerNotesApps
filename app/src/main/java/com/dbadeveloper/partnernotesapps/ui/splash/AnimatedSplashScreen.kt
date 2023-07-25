@@ -1,10 +1,9 @@
-package com.dbadeveloper.partnernotesapps.ui.splashscreen
+package com.dbadeveloper.partnernotesapps.ui.splash
 
 import android.content.res.Configuration
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,9 +30,6 @@ import androidx.navigation.NavHostController
 import com.dbadeveloper.partnernotesapps.R
 import com.dbadeveloper.partnernotesapps.navigation.Screen
 import com.dbadeveloper.partnernotesapps.ui.theme.PartnerNotesAppsTheme
-import com.dbadeveloper.partnernotesapps.ui.theme.md_theme_light_onSurface
-import com.dbadeveloper.partnernotesapps.ui.theme.md_theme_light_primary
-import com.dbadeveloper.partnernotesapps.ui.theme.md_theme_light_surfaceVariant
 import kotlinx.coroutines.delay
 
 @Composable
