@@ -2,6 +2,7 @@ package com.dbadeveloper.partnernotesapps.ui.component
 
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -17,13 +18,13 @@ sealed class InputType (
     val visualTransformation: VisualTransformation
 ){
     object Name: InputType(
-        label = "Name",
-        icon = Icons.Default.Person,
+        label = "Full Name",
+        icon = Icons.Default.Face,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
         visualTransformation = VisualTransformation.None
     )
-    object Email: InputType(
-        label = "Email",
+    object Username: InputType(
+        label = "Username",
         icon = Icons.Default.Person,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
         visualTransformation = VisualTransformation.None)
@@ -34,7 +35,7 @@ sealed class InputType (
         keyboardOptions = KeyboardOptions(
             imeAction = ImeAction.Done,
             keyboardType = KeyboardType.Password),
-        visualTransformation = PasswordVisualTransformation()
+        visualTransformation = PasswordVisualTransformation(),
     )
 
 }

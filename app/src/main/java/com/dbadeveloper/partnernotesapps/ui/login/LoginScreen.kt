@@ -10,17 +10,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -30,14 +26,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.dbadeveloper.partnernotesapps.R
+import com.dbadeveloper.partnernotesapps.navigation.Screen
 import com.dbadeveloper.partnernotesapps.ui.component.InputType
+import com.dbadeveloper.partnernotesapps.ui.component.TextInput
+import com.dbadeveloper.partnernotesapps.ui.component.TextInputPassword
 import com.dbadeveloper.partnernotesapps.ui.theme.PartnerNotesAppsTheme
 import kotlinx.coroutines.delay
 
@@ -55,11 +54,11 @@ fun LoginScreen(navHostController: NavHostController) {
         delay(3000)
     }
 
-    Login(alphaAnimation.value)
-}
+    Login(alphaAnimation.value, navHostController)
 
+}
 @Composable
-fun Login(alpha: Float) {
+fun Login (alpha: Float, navHostController: NavHostController) {
     Column(
         modifier = Modifier
             .padding(24.dp)
@@ -76,8 +75,8 @@ fun Login(alpha: Float) {
             contentDescription = stringResource(id = R.string.logo_content_description),
             tint = MaterialTheme.colorScheme.primary,
         )
-        TextInput(InputType.Email, alpha)
-        TextInput(InputType.Password, alpha)
+        TextInput(InputType.Username, alpha)
+        TextInputPassword(InputType.Password, alpha)
         Button(
             onClick = { /*TODO*/ },
             modifier = Modifier
@@ -95,7 +94,8 @@ fun Login(alpha: Float) {
             thickness = 1.dp,
             modifier = Modifier
                 .padding(
-                top = 18.dp,)
+                    top = 18.dp,
+                )
                 .alpha(alpha = alpha)
         )
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -104,7 +104,7 @@ fun Login(alpha: Float) {
                 modifier = Modifier.padding(end = 8.dp),
                 color = MaterialTheme.colorScheme.primary,
             )
-            TextButton(onClick = { /*TODO*/ }) {
+            TextButton(onClick = { navHostController.navigate(Screen.Register.route) }) {
                 Text(
                     text = "SIGN UP",
                     style = MaterialTheme.typography.titleMedium
@@ -115,29 +115,7 @@ fun Login(alpha: Float) {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun TextInput(inputType: InputType, alpha: Float) {
-    var value : String by remember { mutableStateOf("") }
-    TextField(
-        value = value,
-        onValueChange = { value = it},
-        modifier = Modifier
-            .fillMaxWidth()
-            .alpha(alpha = alpha),
-        leadingIcon = {
-            Icon(imageVector = inputType.icon,
-                contentDescription = inputType.label
-            )},
-        label = {
-            Text(text = inputType.label)},
-        colors = TextFieldDefaults.textFieldColors(
-        focusedIndicatorColor = Color.Transparent,
-        unfocusedIndicatorColor = Color.Transparent,
-    ),
-        shape = RoundedCornerShape(50.dp),
-    )
-}
+
 
 @Preview(name = "Light", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
@@ -145,7 +123,10 @@ fun TextInput(inputType: InputType, alpha: Float) {
 fun LoginScreenPreview() {
     PartnerNotesAppsTheme {
         Surface{
-            Login(alpha = 1f)
+            Login(
+                alpha = 1f,
+                navHostController = rememberNavController()
+            )
         }
     }
 }
