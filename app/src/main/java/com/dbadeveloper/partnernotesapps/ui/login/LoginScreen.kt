@@ -1,16 +1,15 @@
 package com.dbadeveloper.partnernotesapps.ui.login
 
+import android.content.Context
 import android.content.res.Configuration
+import android.widget.Toast
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.imeNestedScroll
-import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
@@ -29,6 +28,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -60,18 +60,16 @@ fun LoginScreen(navHostController: NavHostController) {
     Login(alphaAnimation.value, navHostController)
 
 }
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun Login (alpha: Float, navHostController: NavHostController) {
 
     val usernameValue by remember { mutableStateOf("") }
     val passwordValue by remember { mutableStateOf("") }
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier
             .padding(24.dp)
-            .imePadding() // padding for the bottom for the IME
-            .imeNestedScroll() // scroll IME at the bottom
             .fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(16.dp, alignment =  Alignment.Bottom),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -89,7 +87,7 @@ fun Login (alpha: Float, navHostController: NavHostController) {
         TextInput(InputType.Username, alpha, usernameValue)
         TextInputPassword(InputType.Password, alpha, passwordValue)
         Button(
-            onClick = { /*TODO*/ },
+            onClick = { context.doLogin()},
             modifier = Modifier
                 .fillMaxWidth()
                 .alpha(alpha = alpha),
@@ -124,6 +122,15 @@ fun Login (alpha: Float, navHostController: NavHostController) {
             }
         }
     }
+}
+
+private fun Context.doLogin() {
+    Toast.makeText(
+        this,
+        "Something went wrong, try again later!",
+        Toast.LENGTH_SHORT
+    ).show()
+
 }
 
 fun CheckLogin (username: String, password: String): Boolean {

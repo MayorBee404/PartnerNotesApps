@@ -27,3 +27,13 @@ X
 build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
 A
 core/build.gradle,9/1/918ca359602392354123b7d3b63264baf7ea9dde
+J
+shared_dependencies.gradle,b/e/bea21ad436ad8008e4327b60ad9d3401a26c6abc
+@
+app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
+s
+Capp/src/main/java/com/dbadeveloper/partnernotesapps/MainActivity.kt,4/0/4028db91e75aa5edf9699d4f58424f0c5927dcce
+}
+Mapp/src/main/java/com/dbadeveloper/partnernotesapps/ui/component/TextInput.kt,a/d/ade3a3730602f4cb772010844deb096d8434c5cc
+Q
+!core/src/main/AndroidManifest.xml,a/e/ae00e14a93cb05cbe86f462a3bad74d51f6b1afc

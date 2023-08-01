@@ -1,6 +1,8 @@
 package com.dbadeveloper.partnernotesapps.ui.register
 
+import android.content.Context
 import android.content.res.Configuration
+import android.widget.Toast
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
@@ -28,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -66,6 +69,7 @@ fun Register (alpha: Float, navHostController: NavHostController){
     val nameValue by remember { mutableStateOf("") }
     val usernameValue by remember { mutableStateOf("") }
     val passwordValue by remember { mutableStateOf("") }
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier
@@ -88,7 +92,7 @@ fun Register (alpha: Float, navHostController: NavHostController){
         TextInput(InputType.Username, alpha, usernameValue)
         TextInputPassword(InputType.Password, alpha, passwordValue)
         Button(
-            onClick = { /*TODO*/ },
+            onClick = { context.doRegister() },
             modifier = Modifier
                 .fillMaxWidth()
                 .alpha(alpha = alpha),
@@ -124,6 +128,14 @@ fun Register (alpha: Float, navHostController: NavHostController){
             }
         }
     }
+}
+
+private fun Context.doRegister() {
+    Toast.makeText(
+        this,
+        "Something went wrong, try again later!",
+        Toast.LENGTH_SHORT
+    ).show()
 }
 
 fun CheckRegister(fullname: String, username: String, password: String): Boolean {
