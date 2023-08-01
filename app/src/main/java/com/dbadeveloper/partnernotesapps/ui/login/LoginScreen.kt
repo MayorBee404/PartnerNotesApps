@@ -5,9 +5,12 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imeNestedScroll
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
@@ -47,7 +50,7 @@ fun LoginScreen(navHostController: NavHostController) {
         targetValue = if (startAnimation) 1f else 0f,
         animationSpec = tween(
             durationMillis = 3000
-        )
+        ), label = ""
     )
     LaunchedEffect(key1 = true ) {
         startAnimation = true
@@ -57,14 +60,22 @@ fun LoginScreen(navHostController: NavHostController) {
     Login(alphaAnimation.value, navHostController)
 
 }
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun Login (alpha: Float, navHostController: NavHostController) {
+
+    val usernameValue by remember { mutableStateOf("") }
+    val passwordValue by remember { mutableStateOf("") }
+
     Column(
         modifier = Modifier
             .padding(24.dp)
+            .imePadding() // padding for the bottom for the IME
+            .imeNestedScroll() // scroll IME at the bottom
             .fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(16.dp, alignment =  Alignment.Bottom),
         horizontalAlignment = Alignment.CenterHorizontally,
+
     ) {
         Icon(
             modifier = Modifier
@@ -75,8 +86,8 @@ fun Login (alpha: Float, navHostController: NavHostController) {
             contentDescription = stringResource(id = R.string.logo_content_description),
             tint = MaterialTheme.colorScheme.primary,
         )
-        TextInput(InputType.Username, alpha)
-        TextInputPassword(InputType.Password, alpha)
+        TextInput(InputType.Username, alpha, usernameValue)
+        TextInputPassword(InputType.Password, alpha, passwordValue)
         Button(
             onClick = { /*TODO*/ },
             modifier = Modifier
@@ -109,10 +120,15 @@ fun Login (alpha: Float, navHostController: NavHostController) {
                     text = "SIGN UP",
                     style = MaterialTheme.typography.titleMedium
                 )
-                
+
             }
         }
     }
+}
+
+fun CheckLogin (username: String, password: String): Boolean {
+    return true
+
 }
 
 

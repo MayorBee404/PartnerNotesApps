@@ -17,19 +17,19 @@ sealed class InputType (
     val keyboardOptions: KeyboardOptions,
     val visualTransformation: VisualTransformation
 ){
-    object Name: InputType(
+    data object Name: InputType(
         label = "Full Name",
         icon = Icons.Default.Face,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
         visualTransformation = VisualTransformation.None
     )
-    object Username: InputType(
+    data object Username: InputType(
         label = "Username",
         icon = Icons.Default.Person,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
         visualTransformation = VisualTransformation.None)
 
-    object Password: InputType(
+    data object Password: InputType(
         label = "Password",
         icon = Icons.Default.Lock,
         keyboardOptions = KeyboardOptions(

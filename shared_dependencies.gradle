@@ -1,6 +1,5 @@
 dependencies {
-
-
+    
     //Koin Injection
     def koin_version = "3.4.5"
     implementation "io.insert-koin:koin-androidx-compose:$koin_version"

@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TextInput(inputType: InputType, alpha: Float) {
+fun TextInput(inputType: InputType, alpha: Float, value: String) {
     var value : String by remember { mutableStateOf("") }
     TextField(
         value = value,
@@ -54,7 +54,7 @@ fun TextInput(inputType: InputType, alpha: Float) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TextInputPassword(inputType: InputType, alpha: Float) {
+fun TextInputPassword(inputType: InputType, alpha: Float, value: String) {
     var value : String by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
     TextField(

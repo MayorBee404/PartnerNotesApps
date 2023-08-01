@@ -17,5 +17,13 @@ Vcore/src/main/java/com/dbadeveloper/partnernotesapps/core/data/NetworkBoundReso
 bcore/src/main/java/com/dbadeveloper/partnernotesapps/core/data/source/remote/network/ApiService.kt,a/1/a179a3d3e8619d5ba82de933956adceb55f14dec
 •
 ecore/src/main/java/com/dbadeveloper/partnernotesapps/core/data/source/remote/response/UserResponse.kt,f/a/fa46b9e9ce40585b43b4d0094626bf5e198f93f1
-s
-Capp/src/main/java/com/dbadeveloper/partnernotesapps/MainActivity.kt,4/0/4028db91e75aa5edf9699d4f58424f0c5927dcce
+A
+gradle.properties,2/a/2afbb999f001938c88fa43fc2ef52abf0f8213e4
+?
+settings.gradle,0/5/05efc8b1657769a27696d478ded1e95f38737233
+X
+(gradle/wrapper/gradle-wrapper.properties,f/b/fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
+<
+build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
+A
+core/build.gradle,9/1/918ca359602392354123b7d3b63264baf7ea9dde

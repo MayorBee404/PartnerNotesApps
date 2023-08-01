@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
@@ -47,7 +49,7 @@ fun RegisterScreen(navHostController: NavHostController) {
         targetValue = if (startAnimation) 1f else 0f,
         animationSpec = tween(
             durationMillis = 3000
-        )
+        ), label = ""
     )
     LaunchedEffect(key1 = true ) {
         startAnimation = true
@@ -60,9 +62,15 @@ fun RegisterScreen(navHostController: NavHostController) {
 
 @Composable
 fun Register (alpha: Float, navHostController: NavHostController){
+
+    val nameValue by remember { mutableStateOf("") }
+    val usernameValue by remember { mutableStateOf("") }
+    val passwordValue by remember { mutableStateOf("") }
+
     Column(
         modifier = Modifier
             .padding(24.dp)
+            .navigationBarsPadding().imePadding()
             .fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(16.dp, alignment =  Alignment.Bottom),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -76,9 +84,9 @@ fun Register (alpha: Float, navHostController: NavHostController){
             contentDescription = stringResource(id = R.string.logo_content_description),
             tint = MaterialTheme.colorScheme.primary,
         )
-        TextInput(InputType.Name, alpha)
-        TextInput(InputType.Username, alpha)
-        TextInputPassword(InputType.Password, alpha)
+        TextInput(InputType.Name, alpha, nameValue)
+        TextInput(InputType.Username, alpha, usernameValue)
+        TextInputPassword(InputType.Password, alpha, passwordValue)
         Button(
             onClick = { /*TODO*/ },
             modifier = Modifier
@@ -117,6 +125,11 @@ fun Register (alpha: Float, navHostController: NavHostController){
         }
     }
 }
+
+fun CheckRegister(fullname: String, username: String, password: String): Boolean {
+    return true
+}
+
 @Preview(name = "Light", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
