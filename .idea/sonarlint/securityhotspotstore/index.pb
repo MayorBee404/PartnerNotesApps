@@ -37,3 +37,11 @@ Capp/src/main/java/com/dbadeveloper/partnernotesapps/MainActivity.kt,4/0/4028db
 Mapp/src/main/java/com/dbadeveloper/partnernotesapps/ui/component/TextInput.kt,a/d/ade3a3730602f4cb772010844deb096d8434c5cc
 Q
 !core/src/main/AndroidManifest.xml,a/e/ae00e14a93cb05cbe86f462a3bad74d51f6b1afc
+P
+ app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
+}
+Mapp/src/main/java/com/dbadeveloper/partnernotesapps/ui/component/InputType.kt,0/9/0941c6b7ed9580a793e749eb9a7fa51cd02f036b
+{
+Kapp/src/main/java/com/dbadeveloper/partnernotesapps/ui/login/LoginScreen.kt,8/2/8250234c54879ff7d635c7a23d36c533a575720b
+Å
+Qapp/src/main/java/com/dbadeveloper/partnernotesapps/ui/register/RegisterScreen.kt,b/8/b839dde2f282bbc14a8ea45bdeaf7c483be1db59

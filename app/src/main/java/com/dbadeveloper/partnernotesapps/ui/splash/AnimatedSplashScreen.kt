@@ -39,7 +39,7 @@ fun AnimatedSplashScreen(navHostController: NavHostController){
         targetValue = if (startAnimation) 1f else 0f,
         animationSpec = tween(
             durationMillis = 3000
-        )
+        ), label = ""
     )
 
     LaunchedEffect(key1 = true ){
@@ -96,7 +96,7 @@ fun Splash(alpha: Float){
 @Preview(name = "Light", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun SplashScreenPerview(){
+fun SplashScreenPreview(){
     PartnerNotesAppsTheme {
         Splash(alpha = 1f)
     }
