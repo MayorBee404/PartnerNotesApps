@@ -2,6 +2,9 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
+    id 'com.google.devtools.ksp'
+    id 'com.google.dagger.hilt.android'
+    id 'kotlin-kapt'
 }
 
 apply from: '../shared_dependencies.gradle'
@@ -51,6 +54,7 @@ android {
         includeInApk true
         includeInBundle true
     }
+    ndkVersion '26.1.10909125'
 }
 
 dependencies {
