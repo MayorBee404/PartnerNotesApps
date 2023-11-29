@@ -64,9 +64,9 @@ fun RegisterScreen(navHostController: NavHostController) {
 @Composable
 fun Register (alpha: Float, navHostController: NavHostController){
 
-    val nameValue by remember { mutableStateOf("") }
-    val usernameValue by remember { mutableStateOf("") }
-    val passwordValue by remember { mutableStateOf("") }
+    var nameValue by remember { mutableStateOf("") }
+    var usernameValue by remember { mutableStateOf("") }
+    var passwordValue by remember { mutableStateOf("") }
     val context = LocalContext.current
 
     Column(
@@ -85,11 +85,17 @@ fun Register (alpha: Float, navHostController: NavHostController){
             contentDescription = stringResource(id = R.string.logo_content_description),
             tint = MaterialTheme.colorScheme.primary,
         )
-        TextInput(InputType.Name, alpha, nameValue)
-        TextInput(InputType.Username, alpha, usernameValue)
-        TextInputPassword(InputType.Password, alpha, passwordValue)
+        TextInput(InputType.Name, alpha){
+            value -> nameValue = value
+        }
+        TextInput(InputType.Username, alpha){
+            value -> usernameValue = value
+        }
+        TextInputPassword(InputType.Password, alpha){
+            value -> passwordValue = value
+        }
         Button(
-            onClick = { context.doRegister() },
+            onClick = { context.checkRegister(nameValue, usernameValue, passwordValue) },
             modifier = Modifier
                 .fillMaxWidth()
                 .alpha(alpha = alpha),
@@ -135,7 +141,12 @@ private fun Context.doRegister() {
     ).show()
 }
 
-fun CheckRegister(fullname: String, username: String, password: String): Boolean {
+fun Context.checkRegister(fullname: String, username: String, password: String): Boolean {
+    Toast.makeText(
+        this,
+        "Full Name: $fullname Username: $username Password: $password",
+        Toast.LENGTH_SHORT
+    ).show()
     return true
 }
 

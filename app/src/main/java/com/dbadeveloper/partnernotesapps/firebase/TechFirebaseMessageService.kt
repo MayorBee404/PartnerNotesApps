@@ -98,7 +98,7 @@ class TechFirebaseMessageService : FirebaseMessagingService() {
     @OptIn(DelicateCoroutinesApi::class)
     override fun onNewToken(token: String) {
         super.onNewToken(token)
-        Log.d("FCM",token)
+        Log.d("FCM Token",token)
         GlobalScope.launch {
             saveGCMToken(token)
         }

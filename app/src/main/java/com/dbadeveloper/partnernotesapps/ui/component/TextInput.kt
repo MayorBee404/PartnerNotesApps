@@ -25,11 +25,12 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TextInput(inputType: InputType, alpha: Float, value: String) {
-    var value : String by remember { mutableStateOf("") }
+fun TextInput(inputType: InputType, alpha: Float,  onValueChange: (String) -> Unit) {
+    var value by remember { mutableStateOf("") }
     TextField(
         value = value,
-        onValueChange = { value = it},
+        onValueChange = { value = it
+                        onValueChange(it)},
         modifier = Modifier
             .fillMaxWidth()
             .alpha(alpha = alpha),
@@ -54,12 +55,13 @@ fun TextInput(inputType: InputType, alpha: Float, value: String) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TextInputPassword(inputType: InputType, alpha: Float, value: String) {
-    var value : String by remember { mutableStateOf("") }
+fun TextInputPassword(inputType: InputType, alpha: Float,  onValueChange: (String) -> Unit) {
+    var value by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
     TextField(
         value = value,
-        onValueChange = { value = it},
+        onValueChange = { value = it
+                        onValueChange(it)},
         modifier = Modifier
             .fillMaxWidth()
             .alpha(alpha = alpha),

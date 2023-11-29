@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
@@ -63,13 +64,14 @@ fun LoginScreen(navHostController: NavHostController) {
 @Composable
 fun Login (alpha: Float, navHostController: NavHostController) {
 
-    val usernameValue by remember { mutableStateOf("") }
-    val passwordValue by remember { mutableStateOf("") }
+    var usernameValue by remember { mutableStateOf("") }
+    var passwordValue by remember { mutableStateOf("") }
     val context = LocalContext.current
 
     Column(
         modifier = Modifier
             .padding(24.dp)
+            .systemBarsPadding()
             .fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(16.dp, alignment =  Alignment.Bottom),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -84,10 +86,14 @@ fun Login (alpha: Float, navHostController: NavHostController) {
             contentDescription = stringResource(id = R.string.logo_content_description),
             tint = MaterialTheme.colorScheme.primary,
         )
-        TextInput(InputType.Username, alpha, usernameValue)
-        TextInputPassword(InputType.Password, alpha, passwordValue)
+        TextInput(InputType.Username, alpha){
+            value -> usernameValue = value
+        }
+        TextInputPassword(InputType.Password, alpha){
+            value -> passwordValue = value
+        }
         Button(
-            onClick = { context.doLogin()},
+            onClick = { context.checkLogin(usernameValue, passwordValue) },
             modifier = Modifier
                 .fillMaxWidth()
                 .alpha(alpha = alpha),
@@ -127,14 +133,22 @@ fun Login (alpha: Float, navHostController: NavHostController) {
 private fun Context.doLogin() {
     Toast.makeText(
         this,
-        "Something went wrong, try again later!",
+        "Something went wrong! Try again later!",
         Toast.LENGTH_SHORT
     ).show()
 
 }
 
-fun CheckLogin (username: String, password: String): Boolean {
-    return true
+fun Context.checkLogin (username: String, password: String): Boolean {
+    if (username == "admin" && password == "admin"){
+        Toast.makeText(
+            this,
+            "Username $username and password $password",
+            Toast.LENGTH_SHORT
+        ).show()
+        return true
+    }
+    return false
 
 }
 
