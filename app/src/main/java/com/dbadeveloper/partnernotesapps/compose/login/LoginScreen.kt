@@ -1,4 +1,4 @@
-package com.dbadeveloper.partnernotesapps.ui.login
+package com.dbadeveloper.partnernotesapps.compose.login
 
 import android.content.Context
 import android.content.res.Configuration
@@ -37,10 +37,10 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.dbadeveloper.partnernotesapps.R
-import com.dbadeveloper.partnernotesapps.navigation.Screen
-import com.dbadeveloper.partnernotesapps.ui.component.InputType
-import com.dbadeveloper.partnernotesapps.ui.component.TextInput
-import com.dbadeveloper.partnernotesapps.ui.component.TextInputPassword
+import com.dbadeveloper.partnernotesapps.compose.component.InputType
+import com.dbadeveloper.partnernotesapps.compose.component.TextInput
+import com.dbadeveloper.partnernotesapps.compose.component.TextInputPassword
+import com.dbadeveloper.partnernotesapps.ui.navigation.Screen
 import com.dbadeveloper.partnernotesapps.ui.theme.PartnerNotesAppsTheme
 import kotlinx.coroutines.delay
 
@@ -64,7 +64,7 @@ fun LoginScreen(navHostController: NavHostController) {
 @Composable
 fun Login (alpha: Float, navHostController: NavHostController) {
 
-    var usernameValue by remember { mutableStateOf("") }
+    var emailValue by remember { mutableStateOf("") }
     var passwordValue by remember { mutableStateOf("") }
     val context = LocalContext.current
 
@@ -86,14 +86,14 @@ fun Login (alpha: Float, navHostController: NavHostController) {
             contentDescription = stringResource(id = R.string.logo_content_description),
             tint = MaterialTheme.colorScheme.primary,
         )
-        TextInput(InputType.Username, alpha){
-            value -> usernameValue = value
+        TextInput(InputType.Email, alpha){
+            value -> emailValue = value
         }
         TextInputPassword(InputType.Password, alpha){
             value -> passwordValue = value
         }
         Button(
-            onClick = { context.checkLogin(usernameValue, passwordValue) },
+            onClick = { context.checkLogin(emailValue, passwordValue) },
             modifier = Modifier
                 .fillMaxWidth()
                 .alpha(alpha = alpha),
@@ -139,15 +139,19 @@ private fun Context.doLogin() {
 
 }
 
-fun Context.checkLogin (username: String, password: String): Boolean {
-    if (username == "admin" && password == "admin"){
+fun Context.checkLogin (email: String, password: String): Boolean {
+    if (email == "admin@admin.com" && password == "admin"){
         Toast.makeText(
             this,
-            "Username $username and password $password",
+            "Logged in successfully!",
             Toast.LENGTH_SHORT
         ).show()
         return true
     }
+    Toast.makeText(
+        this, " Email & Password not valid!",
+        Toast.LENGTH_SHORT
+    ).show()
     return false
 
 }

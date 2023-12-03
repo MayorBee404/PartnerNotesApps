@@ -14,10 +14,12 @@ val Context.dataStore : DataStore<Preferences> by preferencesDataStore(name = "L
 @HiltAndroidApp
 class Applications : Application() {
 
+
     override fun onCreate() {
         super.onCreate()
         //Let's call the function.
         createNotificationChannel()
+
     }
 
     //Create Notification Channel.

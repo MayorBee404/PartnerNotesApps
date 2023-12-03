@@ -4,7 +4,6 @@ plugins {
     id 'com.google.gms.google-services'
     id 'com.google.devtools.ksp'
     id 'com.google.dagger.hilt.android'
-    id 'kotlin-kapt'
 }
 
 apply from: '../shared_dependencies.gradle'
@@ -55,6 +54,7 @@ android {
         includeInBundle true
     }
     ndkVersion '26.1.10909125'
+
 }
 
 dependencies {
@@ -78,4 +78,9 @@ dependencies {
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
+
+}
+
+hilt {
+    enableAggregatingTask = true
 }

@@ -1,4 +1,4 @@
-package com.dbadeveloper.partnernotesapps.ui.component
+package com.dbadeveloper.partnernotesapps.compose.component
 
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -27,6 +27,14 @@ sealed class InputType (
         label = "Username",
         icon = Icons.Default.Person,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+        visualTransformation = VisualTransformation.None)
+
+    data object Email: InputType(
+        label = "Email",
+        icon = Icons.Default.Person,
+        keyboardOptions = KeyboardOptions(
+            imeAction = ImeAction.Next,
+            keyboardType = KeyboardType.Email),
         visualTransformation = VisualTransformation.None)
 
     data object Password: InputType(

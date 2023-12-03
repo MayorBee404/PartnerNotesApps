@@ -1,4 +1,4 @@
-package com.dbadeveloper.partnernotesapps.navigation
+package com.dbadeveloper.partnernotesapps.ui.navigation
 
 sealed class Screen (val route : String){
     data object Settings : Screen("settings")

@@ -1,4 +1,4 @@
-package com.dbadeveloper.partnernotesapps.ui.splash
+package com.dbadeveloper.partnernotesapps.compose.splash
 
 import android.content.res.Configuration
 import androidx.compose.animation.core.animateFloatAsState
@@ -28,7 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.dbadeveloper.partnernotesapps.R
-import com.dbadeveloper.partnernotesapps.navigation.Screen
+import com.dbadeveloper.partnernotesapps.ui.navigation.Screen
 import com.dbadeveloper.partnernotesapps.ui.theme.PartnerNotesAppsTheme
 import kotlinx.coroutines.delay
 

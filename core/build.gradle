@@ -3,7 +3,6 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.google.devtools.ksp'
     id 'com.google.dagger.hilt.android'
-    id 'kotlin-kapt'
 }
 
 apply from: '../shared_dependencies.gradle'
@@ -44,9 +43,6 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
-    hilt {
-        enableAggregatingTask = true
-    }
 }
 
 dependencies {
@@ -66,4 +62,7 @@ dependencies {
 
     //MacBook M1 Compiler Error:
     ksp 'org.xerial:sqlite-jdbc:3.41.2.2'
+}
+hilt {
+    enableAggregatingTask = true
 }

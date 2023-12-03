@@ -8,7 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.dbadeveloper.partnernotesapps.navigation.SetupNavGraph
+import com.dbadeveloper.partnernotesapps.ui.navigation.SetupNavGraph
 import com.dbadeveloper.partnernotesapps.ui.theme.PartnerNotesAppsTheme
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -1,9 +1,11 @@
 dependencies {
     
     //Dagger Hilt
-    def hilt_version = "2.45"
-    implementation "com.google.dagger:hilt-android:$hilt_version"
-    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    def hilt_version = "2.49"
+    implementation "com.google.dagger:hilt-android:2.49"
+    ksp "com.google.dagger:dagger-compiler:$hilt_version" // Dagger compiler
+    ksp "com.google.dagger:hilt-android-compiler:$hilt_version" // Dagger Hilt compiler$"
+
     //Navigation Compose
     def nav_version = "2.6.0"
     implementation "androidx.navigation:navigation-compose:$nav_version"

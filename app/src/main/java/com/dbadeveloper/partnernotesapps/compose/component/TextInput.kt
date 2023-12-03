@@ -1,4 +1,4 @@
-package com.dbadeveloper.partnernotesapps.ui.component
+package com.dbadeveloper.partnernotesapps.compose.component
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TextInput(inputType: InputType, alpha: Float,  onValueChange: (String) -> Unit) {
+fun TextInput(inputType: InputType, alpha: Float, onValueChange: (String) -> Unit) {
     var value by remember { mutableStateOf("") }
     TextField(
         value = value,
@@ -55,7 +55,7 @@ fun TextInput(inputType: InputType, alpha: Float,  onValueChange: (String) -> Un
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TextInputPassword(inputType: InputType, alpha: Float,  onValueChange: (String) -> Unit) {
+fun TextInputPassword(inputType: InputType, alpha: Float, onValueChange: (String) -> Unit) {
     var value by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
     TextField(

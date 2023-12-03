@@ -1,4 +1,4 @@
-package com.dbadeveloper.partnernotesapps.ui.register
+package com.dbadeveloper.partnernotesapps.compose.register
 
 import android.content.Context
 import android.content.res.Configuration
@@ -36,10 +36,10 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.dbadeveloper.partnernotesapps.R
-import com.dbadeveloper.partnernotesapps.navigation.Screen
-import com.dbadeveloper.partnernotesapps.ui.component.InputType
-import com.dbadeveloper.partnernotesapps.ui.component.TextInput
-import com.dbadeveloper.partnernotesapps.ui.component.TextInputPassword
+import com.dbadeveloper.partnernotesapps.compose.component.InputType
+import com.dbadeveloper.partnernotesapps.compose.component.TextInput
+import com.dbadeveloper.partnernotesapps.compose.component.TextInputPassword
+import com.dbadeveloper.partnernotesapps.ui.navigation.Screen
 import com.dbadeveloper.partnernotesapps.ui.theme.PartnerNotesAppsTheme
 import kotlinx.coroutines.delay
 
@@ -65,7 +65,7 @@ fun RegisterScreen(navHostController: NavHostController) {
 fun Register (alpha: Float, navHostController: NavHostController){
 
     var nameValue by remember { mutableStateOf("") }
-    var usernameValue by remember { mutableStateOf("") }
+    var emailValue by remember { mutableStateOf("") }
     var passwordValue by remember { mutableStateOf("") }
     val context = LocalContext.current
 
@@ -88,14 +88,14 @@ fun Register (alpha: Float, navHostController: NavHostController){
         TextInput(InputType.Name, alpha){
             value -> nameValue = value
         }
-        TextInput(InputType.Username, alpha){
-            value -> usernameValue = value
+        TextInput(InputType.Email, alpha){
+            value -> emailValue = value
         }
         TextInputPassword(InputType.Password, alpha){
             value -> passwordValue = value
         }
         Button(
-            onClick = { context.checkRegister(nameValue, usernameValue, passwordValue) },
+            onClick = { context.checkRegister(nameValue, emailValue, passwordValue) },
             modifier = Modifier
                 .fillMaxWidth()
                 .alpha(alpha = alpha),
@@ -141,10 +141,10 @@ private fun Context.doRegister() {
     ).show()
 }
 
-fun Context.checkRegister(fullname: String, username: String, password: String): Boolean {
+fun Context.checkRegister(fullname: String, email: String, password: String): Boolean {
     Toast.makeText(
         this,
-        "Full Name: $fullname Username: $username Password: $password",
+        "Full Name: $fullname email: $email: $password",
         Toast.LENGTH_SHORT
     ).show()
     return true
