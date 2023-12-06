@@ -1,4 +1,7 @@
 package com.dbadeveloper.partnernotesapps.data.source.remote.response
+
+import com.dbadeveloper.partnernotesapps.domain.model.UserData
+
 class AuthResponse {
     data class RegisterResponse(
         val status: String,
@@ -8,9 +11,6 @@ class AuthResponse {
         val status: String,
         val message: String,
         val data: UserData
-    )
-    data class UserData(
-        val accessToken: String
     )
 
 }

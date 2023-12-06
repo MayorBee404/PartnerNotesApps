@@ -5,5 +5,5 @@ import com.dbadeveloper.partnernotesapps.data.source.remote.response.AuthRespons
 import kotlinx.coroutines.flow.Flow
 
 interface LoginUseCase {
-    fun doLogin(username: String, password: String): Flow<Resource<AuthResponse.LoginResponse>>
+    fun doLogin(email: String, password: String): Flow<Resource<AuthResponse.LoginResponse>>
 }

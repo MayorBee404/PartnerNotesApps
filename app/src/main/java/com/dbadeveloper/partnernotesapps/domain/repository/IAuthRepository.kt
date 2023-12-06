@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface IAuthRepository {
     fun doLogin(
-        username: String,
+        email: String,
         password: String
     ): Flow<Resource<AuthResponse.LoginResponse>>
 

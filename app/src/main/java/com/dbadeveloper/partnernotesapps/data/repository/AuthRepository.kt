@@ -14,13 +14,12 @@ class AuthRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 
 ): IAuthRepository {
-    override fun doLogin(username: String, password: String) : Flow<Resource<AuthResponse.LoginResponse>> {
+    override fun doLogin(email: String, password: String) : Flow<Resource<AuthResponse.LoginResponse>> {
         return flow {
             emit(Resource.Loading())
-            remoteDataSource.doLogin(username, password).collect {
+            remoteDataSource.doLogin(email, password).collect {
                 when(it){
                     is ApiResponse.Success -> {
-
                         emit(Resource.Success(it.data))
                     }
                     is ApiResponse.Error -> {

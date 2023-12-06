@@ -24,7 +24,7 @@ object NetworkModule {
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://notes-api.dicoding.dev/v1")
+            .baseUrl("https://notes-api.dicoding.dev/v1/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()

@@ -9,10 +9,10 @@ import javax.inject.Inject
 
 class LoginInteractor @Inject constructor(private val authRepository: IAuthRepository) : LoginUseCase{
     override fun doLogin(
-        username: String,
+        email: String,
         password: String
     ): Flow<Resource<AuthResponse.LoginResponse>> {
-        return authRepository.doLogin(username, password)
+        return authRepository.doLogin(email, password)
     }
 
 }

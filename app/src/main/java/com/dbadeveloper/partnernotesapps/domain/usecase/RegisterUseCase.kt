@@ -1,0 +1,3 @@
+package com.dbadeveloper.partnernotesapps.domain.usecase
+
+interface RegisterUseCase

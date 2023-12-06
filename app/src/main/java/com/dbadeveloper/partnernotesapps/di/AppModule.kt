@@ -24,4 +24,5 @@ object AppModule {
     fun provideLoginInteractor(authRepository: AuthRepository): LoginUseCase {
         return LoginInteractor(authRepository)
     }
+
 }

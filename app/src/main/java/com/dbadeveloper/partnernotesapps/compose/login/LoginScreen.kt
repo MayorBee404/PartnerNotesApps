@@ -1,8 +1,5 @@
 package com.dbadeveloper.partnernotesapps.compose.login
 
-import android.content.Context
-import android.content.res.Configuration
-import android.widget.Toast
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
@@ -14,15 +11,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -32,16 +30,15 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.dbadeveloper.partnernotesapps.R
 import com.dbadeveloper.partnernotesapps.compose.component.InputType
 import com.dbadeveloper.partnernotesapps.compose.component.TextInput
 import com.dbadeveloper.partnernotesapps.compose.component.TextInputPassword
 import com.dbadeveloper.partnernotesapps.ui.navigation.Screen
-import com.dbadeveloper.partnernotesapps.ui.theme.PartnerNotesAppsTheme
+import com.dbadeveloper.partnernotesapps.ui.viewmodel.AuthViewModel
 import kotlinx.coroutines.delay
 
 @Composable
@@ -67,7 +64,8 @@ fun Login (alpha: Float, navHostController: NavHostController) {
     var emailValue by remember { mutableStateOf("") }
     var passwordValue by remember { mutableStateOf("") }
     val context = LocalContext.current
-
+    val viewModel = hiltViewModel<AuthViewModel>()
+    val isLoading: Boolean by viewModel.isLoading.observeAsState(false)
     Column(
         modifier = Modifier
             .padding(24.dp)
@@ -93,7 +91,7 @@ fun Login (alpha: Float, navHostController: NavHostController) {
             value -> passwordValue = value
         }
         Button(
-            onClick = { context.checkLogin(emailValue, passwordValue) },
+            onClick = { viewModel.doLogin(emailValue, passwordValue, context) },
             modifier = Modifier
                 .fillMaxWidth()
                 .alpha(alpha = alpha),
@@ -103,6 +101,15 @@ fun Login (alpha: Float, navHostController: NavHostController) {
                 text = "SIGN IN",
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.padding(8.dp))
+
+        }
+        if (isLoading) {
+            CircularProgressIndicator(
+                modifier = Modifier
+                    .padding(8.dp)
+                    .size(24.dp),
+                color = MaterialTheme.colorScheme.primary
+            )
         }
         Divider(
             color = MaterialTheme.colorScheme.primary,
@@ -130,45 +137,18 @@ fun Login (alpha: Float, navHostController: NavHostController) {
     }
 }
 
-private fun Context.doLogin() {
-    Toast.makeText(
-        this,
-        "Something went wrong! Try again later!",
-        Toast.LENGTH_SHORT
-    ).show()
 
-}
-
-fun Context.checkLogin (email: String, password: String): Boolean {
-    if (email == "admin@admin.com" && password == "admin"){
-        Toast.makeText(
-            this,
-            "Logged in successfully!",
-            Toast.LENGTH_SHORT
-        ).show()
-        return true
-    }
-    Toast.makeText(
-        this, " Email & Password not valid!",
-        Toast.LENGTH_SHORT
-    ).show()
-    return false
-
-}
-
-
-
-@Preview(name = "Light", uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun LoginScreenPreview() {
-    PartnerNotesAppsTheme {
-        Surface{
-            Login(
-                alpha = 1f,
-                navHostController = rememberNavController()
-            )
-        }
-    }
-}
+//@Preview(name = "Light", uiMode = Configuration.UI_MODE_NIGHT_NO)
+//@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
+//@Composable
+//fun LoginScreenPreview() {
+//    PartnerNotesAppsTheme {
+//        Surface{
+//            Login(
+//                alpha = 1f,
+//                navHostController = rememberNavController()
+//            )
+//        }
+//    }
+//}
 
