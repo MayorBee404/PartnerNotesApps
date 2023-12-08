@@ -1,7 +1,6 @@
 package com.dbadeveloper.partnernotesapps.compose.register
 
 import android.content.Context
-import android.content.res.Configuration
 import android.widget.Toast
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -16,7 +15,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -31,16 +29,15 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.dbadeveloper.partnernotesapps.R
 import com.dbadeveloper.partnernotesapps.compose.component.InputType
 import com.dbadeveloper.partnernotesapps.compose.component.TextInput
 import com.dbadeveloper.partnernotesapps.compose.component.TextInputPassword
 import com.dbadeveloper.partnernotesapps.ui.navigation.Screen
-import com.dbadeveloper.partnernotesapps.ui.theme.PartnerNotesAppsTheme
+import com.dbadeveloper.partnernotesapps.ui.viewmodel.AuthViewModel
 import kotlinx.coroutines.delay
 
 @Composable
@@ -67,6 +64,7 @@ fun Register (alpha: Float, navHostController: NavHostController){
     var nameValue by remember { mutableStateOf("") }
     var emailValue by remember { mutableStateOf("") }
     var passwordValue by remember { mutableStateOf("") }
+    val viewModel = hiltViewModel<AuthViewModel>()
     val context = LocalContext.current
 
     Column(
@@ -95,7 +93,7 @@ fun Register (alpha: Float, navHostController: NavHostController){
             value -> passwordValue = value
         }
         Button(
-            onClick = { context.checkRegister(nameValue, emailValue, passwordValue) },
+            onClick = { viewModel.doRegister(nameValue, emailValue, passwordValue, context) },
             modifier = Modifier
                 .fillMaxWidth()
                 .alpha(alpha = alpha),
@@ -150,13 +148,13 @@ fun Context.checkRegister(fullname: String, email: String, password: String): Bo
     return true
 }
 
-@Preview(name = "Light", uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun RegisterScreenPreview() {
-    PartnerNotesAppsTheme {
-        Surface{
-            Register(alpha = 1f, navHostController = rememberNavController())
-        }
-    }
-}
+//@Preview(name = "Light", uiMode = Configuration.UI_MODE_NIGHT_NO)
+//@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
+//@Composable
+//fun RegisterScreenPreview() {
+//    PartnerNotesAppsTheme {
+//        Surface{
+//            Register(alpha = 1f, navHostController = rememberNavController())
+//        }
+//    }
+//}

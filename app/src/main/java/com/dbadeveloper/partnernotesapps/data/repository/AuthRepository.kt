@@ -32,7 +32,7 @@ class AuthRepository @Inject constructor(
             }
         }
     }
-    override suspend fun doRegister(name: String, email: String, password: String): Flow<Resource<AuthResponse.RegisterResponse>> {
+    override fun doRegister(name: String, email: String, password: String): Flow<Resource<AuthResponse.RegisterResponse>> {
         return flow {
             emit(Resource.Loading())
             remoteDataSource.doRegister(name, email, password).collect {
@@ -50,7 +50,7 @@ class AuthRepository @Inject constructor(
             }
         }
     }
-    override suspend fun getProfile(accessToken: String) : Flow<Resource<AuthResponse.LoginResponse>> {
+    override fun getProfile(accessToken: String) : Flow<Resource<AuthResponse.LoginResponse>> {
         return flow {
             emit(Resource.Loading())
             remoteDataSource.getProfile(accessToken).collect {

@@ -10,11 +10,11 @@ interface IAuthRepository {
         password: String
     ): Flow<Resource<AuthResponse.LoginResponse>>
 
-    suspend fun doRegister(
+    fun doRegister(
         name: String,
         email: String,
         password: String
     ): Flow<Resource<AuthResponse.RegisterResponse>>
 
-    suspend fun getProfile(accessToken: String): Flow<Resource<AuthResponse.LoginResponse>>
+    fun getProfile(accessToken: String): Flow<Resource<AuthResponse.LoginResponse>>
 }
